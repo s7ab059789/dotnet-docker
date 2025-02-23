@@ -26,6 +26,7 @@ param(
 
 [System.Collections.ArrayList]$TestCategories = $TestCategories
 
+<<<<<<< HEAD
 if ($Version -notmatch '^\d+\.\d+(\.[\d*])?|\*$') {
     Write-Error "Error: Input version '$Version' is not in the expected format of X.Y or X.Y.*"
     exit 1
@@ -34,6 +35,13 @@ if ($Version -notmatch '^\d+\.\d+(\.[\d*])?|\*$') {
     if ($Version.Split('.').Count -lt 3) {
         $Version += ".*"
     }
+=======
+if ($UseImageCache) {
+    $optionalDockerBuildArgs = ""
+}
+else {
+    $optionalDockerBuildArgs = "--no-cache"
+>>>>>>> parent of d1c363450 (Merge latest build definitions and tests from nightly repo)
 }
 
 if (($Mode -eq "BuildAndTest" -or $Mode -eq "Test")) {
@@ -68,6 +76,7 @@ if ($Mode -eq "BuildAndTest" -or $Mode -eq "Build") {
         $OS = "nanoserver-$windowsReleaseId"
     }
 
+<<<<<<< HEAD
     $buildSamples = $Paths -match "samples"
     if ($buildSamples)
     {
@@ -85,6 +94,9 @@ if ($Mode -eq "BuildAndTest" -or $Mode -eq "Build") {
         Write-Host "Skipping samples builds since no input paths contained samples"
     }
 }
+=======
+./test/run-test.ps1 -UseImageCache:$UseImageCache -Filter $Filter -Architecture $Architecture
+>>>>>>> parent of d1c363450 (Merge latest build definitions and tests from nightly repo)
 
 if ($Mode -eq "BuildAndTest" -or $Mode -eq "Test") {
 

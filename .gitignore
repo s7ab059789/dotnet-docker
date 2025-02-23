@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Build output
 [Bb]in/
 [Oo]bj/
@@ -29,3 +30,7 @@ artifacts/
 
 # Snapshots for acceptance testing (Shouldly)
 *.received.*
+=======
+# test assets
+.test-assets/
+>>>>>>> parent of d1c363450 (Merge latest build definitions and tests from nightly repo)

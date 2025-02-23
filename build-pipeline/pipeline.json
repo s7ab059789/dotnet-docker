@@ -1,0 +1,93 @@
+{
+  "Repository": "dotnet-docker",
+  "Definitions": {
+    "Path": ".",
+    "Type": "VSTS",
+    "BaseUrl": "https://devdiv.visualstudio.com/DefaultCollection",
+    "SkipBranchAndVersionOverrides": "false"
+  },
+  "Pipelines": [
+    {
+      "Name": "Build Linux AMD64 Images",
+      "Parameters": {
+        "TreatWarningsAsErrors": "false"
+      },
+      "Definitions": [
+        {
+          "Name": "dotnet-docker-linux-amd64-images",
+          "Parameters": {
+            "PB.image-builder.path": "1.0"
+          }
+        },
+        {
+          "Name": "dotnet-docker-linux-amd64-images",
+          "Parameters": {
+            "PB.image-builder.path": "1.1"
+          }
+        },
+        {
+          "Name": "dotnet-docker-linux-amd64-images",
+          "Parameters": {
+            "PB.image-builder.path": "2.0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Build Linux ARM32v7 Images",
+      "Parameters": {
+        "TreatWarningsAsErrors": "false"
+      },
+      "Definitions": [
+        {
+          "Name": "dotnet-docker-linux-arm32v7-images",
+          "Parameters": {
+            "PB.image-builder.path": "2.0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Build Windows AMD64 Images",
+      "Parameters": {
+        "TreatWarningsAsErrors": "false"
+      },
+      "Definitions": [
+        {
+          "Name": "dotnet-docker-windows-amd64-images",
+          "Parameters": {
+            "PB.image-builder.path": "1.0"
+          }
+        },
+        {
+          "Name": "dotnet-docker-windows-amd64-images",
+          "Parameters": {
+            "PB.image-builder.path": "1.1"
+          }
+        },
+        {
+          "Name": "dotnet-docker-windows-amd64-images",
+          "Parameters": {
+            "PB.image-builder.path": "2.0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Post Image Build",
+      "Parameters": {
+        "TreatWarningsAsErrors": "false"
+      },
+      "Definitions": [
+        {
+          "Name": "dotnet-docker-post-image-build"
+        }
+      ],
+      "DependsOn": [
+        "Build Windows AMD64 Images",
+        "Build Linux AMD64 Images",
+        "Build Linux ARM32v7 Images"
+      ]
+    }
+  ]
+}
